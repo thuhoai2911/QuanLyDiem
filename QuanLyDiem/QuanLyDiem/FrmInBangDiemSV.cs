@@ -55,6 +55,7 @@ namespace QuanLyDiem
                 GridViewInBangDiemSV.AllowUserToAddRows = false;
                 // Không cho phép sửa dữ liệu trực tiếp trên lưới
                 GridViewInBangDiemSV.EditMode = DataGridViewEditMode.EditProgrammatically;
+                btnLamMoi.Enabled = true;
             }
             catch (Exception ex)
             {
