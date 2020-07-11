@@ -23,9 +23,9 @@ namespace QuanLyDiem
             DAO.OpenConnection();
             //Load_DataGridView();
             checkupdate();
-            string sql = "select MaLop from Lop";
+            string sql = "select distinct MaLop from Thoi_Khoa_Bieu";
             DAO.FillDataToCombo(sql, cmbMaLop, "MaLop", "MaLop");
-            sql = "select MaMon, TenMon from MonHoc";
+            sql = "select distinct Thoi_Khoa_Bieu.MaMon, TenMon from MonHoc inner join Thoi_Khoa_Bieu on MonHoc.MaMon=Thoi_Khoa_Bieu.MaMon";
             DAO.FillDataToCombo(sql, cmbMonHoc, "MaMon", "TenMon");
             btnLuu.Enabled = false;
             btnHuy.Enabled = false;
@@ -105,6 +105,13 @@ namespace QuanLyDiem
             {
                 MessageBox.Show("Bạn phải nhập lần thi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtLanThi.Focus();
+                return;
+            }
+            if (Convert.ToInt32(txtLanThi.Text.Trim())== 0)
+            {
+                MessageBox.Show("Lân thi không đúng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLanThi.Focus();
+                txtLanThi.Text = "";
                 return;
             }
             string str;

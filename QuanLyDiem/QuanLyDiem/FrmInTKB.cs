@@ -65,7 +65,7 @@ namespace QuanLyDiem
         }
         private void btnIn_Click(object sender, EventArgs e)
         {
-            LoadDataToGridView();
+            //LoadDataToGridView();
             COMExcel.Application exApp = new COMExcel.Application();
             COMExcel.Workbook exBook; //Trong 1 chương trình Excel có nhiều Workbook
             COMExcel.Worksheet exSheet; //Trong 1 Workbook có nhiều Worksheet

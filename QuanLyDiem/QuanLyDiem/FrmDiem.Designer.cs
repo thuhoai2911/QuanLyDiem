@@ -126,7 +126,7 @@
             this.cmbMonHoc.Location = new System.Drawing.Point(100, 107);
             this.cmbMonHoc.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMonHoc.Name = "cmbMonHoc";
-            this.cmbMonHoc.Size = new System.Drawing.Size(97, 21);
+            this.cmbMonHoc.Size = new System.Drawing.Size(139, 21);
             this.cmbMonHoc.TabIndex = 69;
             // 
             // txtLanThi

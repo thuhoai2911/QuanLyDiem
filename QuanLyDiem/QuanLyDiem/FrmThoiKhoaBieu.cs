@@ -254,20 +254,28 @@ namespace QuanLyDiem
                 strThu += rdothu6.Text;
             if (rdothu7.Checked == true)
                 strThu += rdothu7.Text;
-
-            if (MessageBox.Show("Bạn có muốn xóa?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            
+            string a2 = DAO.GetFieldValues("select count(*) from Diem where MaLop = '" + cmbLop.SelectedValue.ToString() + "' and MaMon='" + cmbMon.SelectedValue.ToString() + "' and HocKy=" + strHK + " and Diem>=0");
+            //MessageBox.Show(a2);
+            if (Convert.ToInt32(a2)>0)
+                MessageBox.Show("Bạn không thể xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
             {
-                string sql = "delete from Thoi_Khoa_Bieu where MaLop = '" + cmbLop.SelectedValue.ToString() + "' and MaMon='" + cmbMon.SelectedValue.ToString() + "' and HocKy=" + strHK + " and ThuHoc=N'" + strThu.ToString() + "' and CaHoc=" + strCa + " and MaPhong='" + cmbPhong.SelectedValue.ToString() + "' ";
-                DAO.OpenConnection();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = sql;
-                cmd.Connection = DAO.con;
-                cmd.ExecuteNonQuery();
-                DAO.CloseConnection();
-                LoadDataToGridView();
-                cmbLop.Enabled = false;
-                cmbMon.Enabled = false;
+                if (MessageBox.Show("Bạn có muốn xóa?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    string sql = "delete from Thoi_Khoa_Bieu where MaLop = '" + cmbLop.SelectedValue.ToString() + "' and MaMon='" + cmbMon.SelectedValue.ToString() + "' and HocKy=" + strHK + " and ThuHoc=N'" + strThu.ToString() + "' and CaHoc=" + strCa + " and MaPhong='" + cmbPhong.SelectedValue.ToString() + "' ";
+                    DAO.OpenConnection();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = sql;
+                    cmd.Connection = DAO.con;
+                    cmd.ExecuteNonQuery();
+                    DAO.CloseConnection();
+                    LoadDataToGridView();
+                    cmbLop.Enabled = false;
+                    cmbMon.Enabled = false;
+                }
             }
+           
         }
 
         private void GridViewTKB_CellClick(object sender, DataGridViewCellEventArgs e)
